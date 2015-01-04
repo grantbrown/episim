@@ -2,6 +2,14 @@ reprocessData <- function(epidemicData){
   pred.tpts = 120
   targetTptsPerRecord = 7
   
+  if (length(unique(epidemicData$location)) != 4){
+    epidemicData$location = as.character(epidemicData$location)
+    missingLoc = setdiff(paste("L", 0:3, sep = ""), unique(epidemicData$location))
+    epidemicData = rbind(epidemicData, c(min(epidemicData$time), 0, missingLoc))
+    epidemicData = data.frame(time=as.numeric(epidemicData$time), cases=as.numeric(epidemicData$cases),
+                              location=as.factor(epidemicData$location))
+  }
+  
   uncumulate = function(x)
   {
     out = c(x[2:length(x)]-x[1:(length(x)-1)])
