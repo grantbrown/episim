@@ -377,7 +377,11 @@ epidemicCanvas = function(nameVal)
     outData += "), ncol = 3, byrow=TRUE);epidemicData=data.frame(time=as.numeric(epidemicData[,1]),"+
                                                                                   "cases=as.numeric(epidemicData[,2]),"+
                                                                                   "location=as.factor(epidemicData[,3]));";
-    outData += "p_ei=" + p_ei + "; p_ir="+p_ir;
+    outData += "p_ei=" + p_ei + "; p_ir="+p_ir+";";
+    for (i = 0; i < self.cityList.length; i++){
+      outData += "L" + i + "=c(" + self.cityList[i].x + "," + self.cityList[i].y + ");";
+    }
+
     return(outData);
   }
 
