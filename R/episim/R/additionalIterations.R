@@ -16,7 +16,7 @@ simulationLoop = function(fileNames, iterationParams, convergenceCriterion)
 {
     startDat = read.csv(fileNames[1])
     totalSamples = max(startDat$Iteration)
-    minimumSamples = 100000
+    minimumSamples = 1000000
     conv = FALSE
     while (!conv)
     {
