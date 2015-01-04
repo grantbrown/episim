@@ -1,0 +1,174 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="apple-touch-icon" sizes="57x57" href="./content/favico/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="./content/favico/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="./content/favico/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="./content/favico/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="./content/favico/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="./content/favico/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="./content/favico/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="./content/favico/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./content/favico/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="./content/favico/favicon-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="./content/favico/favicon-160x160.png" sizes="160x160">
+    <link rel="icon" type="image/png" href="./content/favico/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="./content/favico/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="./content/favico/favicon-32x32.png" sizes="32x32">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-TileImage" content="./content/favico/mstile-144x144.png">
+
+
+    <title>S-E-I-R Simulation</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="./bootstrap/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="./jquery/jqueryUI/jquery-ui.min.css" rel="stylesheet">
+    <link href="./jquery/jqueryUI/jquery-ui.theme.min.css" rel="stylesheet">
+    <link href="./jquery/jqueryUI/jquery-ui.structure.min.css" rel="stylesheet">
+    <link href="./css/cover.css" rel="stylesheet">
+    <link href="./css/jobtalk.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+  <div class="site-wrapper container">
+    <div class="site-wrapper-inner">
+      <div id="modal-div" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="plotModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+              <div class="modal-content row">
+                  <div class="modal-header">
+                      <h3>Summary Plot</h3>
+                  </div>
+                  <div id="main-modal-body" class="modal-body">
+                      <p id="modaltextmessage">
+
+                      </p>
+                  </div>
+              </div>
+          </div>
+      </div>
+        <div class="cover-container">
+          <div class="navbar navbar-fixed-top masthead clearfix">
+            <div class="inner">
+              <div class = "row">
+                <div class = "col-sm-2">
+                  <h3 class="masthead-brand">Compartmental Epidemic Models</h3>
+                </div>
+                <div class="col-sm-3">
+                </div>
+                <div class = "col-sm-6">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      <div class="row">
+        <div class="col-sm-12">
+          <div  class = "main-content-section">
+          <div id="main-content">
+            <div id="contentholder">
+              <div class="row">
+                <div class = "col-sm-1"></div>
+                <div class="col-sm-10">
+                  <div id="canvas-div">
+                    <canvas id="epidemicCanvas" width="600px" height="300px" style="border:2px solid #000000;"></canvas>
+                  </div>
+                  <div class="row canvas-control-div">
+                    <div class="col-sm-4">
+                      <a href="javascript:void(0)" id="epidemic-startbutton" class="btn btn-sm btn-default">Play</a>
+                      <a href="javascript:void(0)" id="epidemic-resetbutton" class="btn btn-sm btn-default">Reset</a>
+                      <a href="javascript:void(0)" id="epidemic-plotbutton" class="btn btn-sm btn-default">Summary Plot</a>
+                    </div>
+                    <div class="col-sm-4">
+                      <div class="row">
+                        <p>Infectivity:</p>
+                        <div id="infectivity-slider"></div>
+                      </div>
+                      <div class="row">
+                        <p>Infectious Duration:</p>
+                        <div id="infectious-time-slider"></div>
+                      </div>
+                      <div class="row">
+                        <p>Travel Propensity:</p>
+                        <div id="travel-slider"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-1"></div>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="mastfoot">
+            <div class="inner">
+              <p class="vertical-center"> <small>Simulation by <a href="grantbrown.github.io">Grant Brown</a></small> </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="./jquery/jquery-1.11.1.min.js"></script>
+    <script src="./jquery/jquery.debounce-1.0.5.js"></script>
+    <script src="./jquery/jqueryUI/jquery-ui.min.js"></script>
+    <script src="./bootstrap/js/bootstrap.js"></script>
+    <script src="./js/docs.min.js"></script>
+    <script src="./js/normalizeCarouselHeight.js"></script>
+    <script src="./js/choroplethData.js"></script>
+    <script src="./js/ExamplesByMesh/JavaScript/QuadTree/src/QuadTree.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['corechart']}]}"></script>
+    <script src="./js/d3.v3.min.js"></script>
+    <script src="./js/topojson.v1.min.js"></script>
+    <script src="./js/datamaps.world.min.js"></script>
+    <script src="./js/epidemicIllustration1.js"></script>
+
+    <script>
+
+      var contentHolder = $("#contentholder");
+      $(document).ready(function(){
+        window.requestAnimFrame = function(){
+            return (
+                window.requestAnimationFrame       ||
+                window.webkitRequestAnimationFrame ||
+                window.mozRequestAnimationFrame    ||
+                window.oRequestAnimationFrame      ||
+                window.msRequestAnimationFrame     ||
+                function(/* function */ draw1){
+                    window.setTimeout(draw1, 1000 / 60);
+                }
+            );
+        }();
+        activateCanvas();
+      });
+    </script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="./js/ie10-viewport-bug-workaround.js"></script>
+  </body>
+</html>

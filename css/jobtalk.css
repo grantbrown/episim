@@ -1,0 +1,76 @@
+.carousel .carousel-control { visibility: hidden; }
+.carousel:hover .carousel-control { visibility: visible; }
+
+.carousel-indicators {
+  margin-top:20px;
+
+}
+.carousel-inner {
+   margin-top:20px;
+   margin-bottom:20px;
+}
+.cover-container {
+  margin-bottom:60px;
+}
+
+.slide-title {
+    margin-bottom:20px;
+    font-size: 5em; /* 40px/16=2.5em */
+}
+.slide-subtitle {
+    font-size: 3em; /* 40px/16=2.5em */
+}
+.slide-content {
+    font-size: 2.8em; /* 40px/16=2.5em */
+}
+
+.hangingindent {
+  padding-left: 30px ;
+  text-indent: -10px ;
+}
+
+.slide-content-sm {
+    font-size: 2.5em; /* 40px/16=2.5em */
+}
+.slide-content-med {
+    font-size: 2.5em; /* 40px/16=2.5em */
+}
+
+.canvas-control-div{
+  margin-bottom:50px;
+}
+
+.vertical-center{
+    text-align: center;
+    position: relative;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.slide-title1{
+  float:top;
+}
+
+.presentation-ul{
+  text-align: left;
+}
+
+.modal-content {
+  background-color: #334455;
+}
+
+.modal-dialog {
+    width: 60%;
+    height:40%;
+}
+
+svg.datamap{
+	height:400px;
+  background:rgb(28,107,160);
+}
+
+.externalLink{
+  color: #337AB7;
+}
