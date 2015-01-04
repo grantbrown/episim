@@ -83,8 +83,8 @@ proposeParameters = function(seedVal, chainNumber, processedData)
                                                        0.01)) # phi)
   
   InitContainer = buildInitialValueContainer(processedData$I_star, processedData$N, 
-                                             S0 = processedData$N[1,]-processedData$I_star[1,] -processedData$I_star[2,],
-                                             E0 = processedData$I_star[2,],
+                                             S0 = processedData$N[1,]-processedData$I0 -processedData$I_star[1,],
+                                             E0 = processedData$I_star[1,],
                                              I0 = processedData$I0)
   DistanceModel = buildDistanceModel(dmList, priorAlpha = 1, priorBeta = 500)
   TransitionPriors = buildTransitionPriorsFromProbabilities(1-exp(-gamma_ei), 1-exp(-gamma_ir),

@@ -5,7 +5,9 @@ reprocessData <- function(epidemicData){
   if (length(unique(epidemicData$location)) != 4){
     epidemicData$location = as.character(epidemicData$location)
     missingLoc = setdiff(paste("L", 0:3, sep = ""), unique(epidemicData$location))
-    epidemicData = rbind(epidemicData, c(min(epidemicData$time), 0, missingLoc))
+    for (l in missingLoc){
+      epidemicData = rbind(epidemicData, c(min(epidemicData$time), 0, l))
+    }
     epidemicData = data.frame(time=as.numeric(epidemicData$time), cases=as.numeric(epidemicData$cases),
                               location=as.factor(epidemicData$location))
   }
