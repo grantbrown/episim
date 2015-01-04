@@ -1,0 +1,10 @@
+Package: episim
+Type: Package
+Title: Functions for my upcoming Biostat job talk
+Version: 1.0
+Date: 2015-01-04
+Author: Grant Brown
+Maintainer: Grant Brown <grant.brown73@gmail.com> 
+Description: Convenience functions 
+Depends: ggplot2, dplyr, spatialSEIR, parallel
+License: Public Domain
