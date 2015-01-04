@@ -341,6 +341,38 @@ epidemicCanvas = function(nameVal)
       }
   }
 
+  self.getRExportCode = function(){
+    outData = "epidemicData <- matrix(c(";
+    var loc; var i; var j;
+    var cty;
+    for (loc = 0; loc < self.cityList.length - 1; loc++){
+      cty = self.cityList[loc].getInfectionSummaryData();
+      for (i = 0; i < (cty.length); i++){
+        for (j = 0; j < (cty[i]).length; j++){
+          outData += cty[i][j] + ",";
+        }
+        outData += ("\"L" + loc + "\",");
+      }
+    }
+    loc = self.cityList.length - 1;
+    cty = self.cityList[loc].getInfectionSummaryData();
+    for (i = 0; i < (cty.length - 1); i++){
+      for (j = 0; j < (cty[i]).length; j++){
+        outData += cty[i][j] + ",";
+      }
+      outData += ("\"L" + loc + "\",");
+    }
+    i = cty.length - 1;
+    for (j = 0; j < (cty[i]).length; j++){
+      outData += cty[i][j] + ",";
+    }
+    outData += ("\"L" + loc + "\"), ncol = 3, byrow=TRUE);epidemicData=data.frame(time=as.numeric(epidemicData[,1]),"+
+                                                                                  "cases=as.numeric(epidemicData[,2]),"+
+                                                                                  "location=as.factor(epidemicData[,3]));");
+    return(outData);
+  }
+
+
   self.getInfectionSummaryData = function(){
     var i;
     var j;
@@ -645,6 +677,7 @@ epidemicCanvas = function(nameVal)
           chart.draw(data, options);
           $("#modaltextmessage").text("Successfully generated plot.");
           $("#modal-div").modal({ keyboard: true, show: true });
+          $("#r-data-export").val(self.getRExportCode());
           $("#main-modal-body").width("100%");
         }
       });
