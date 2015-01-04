@@ -2,7 +2,8 @@ proposeParameters = function(seedVal, chainNumber, processedData)
 {
   # Model structure
   pred.tpts = 120
-  X = diag(ncol(processedData$N))
+  #X = diag(ncol(processedData$N))
+  X = matrix(1, ncol=1, nrow = ncol(processedData$N))
   X.predict = X
   splineBasis = c()
   splineBasis.predict = c()
@@ -45,10 +46,10 @@ proposeParameters = function(seedVal, chainNumber, processedData)
   # Dummy value for reinfection params prior precision
   betaPrsPriorPrecision = 0.5
   
-  gamma_ei = 0.01005034
-  gamma_ir = 0.313205
+  gamma_ei = -log(1-p_ei)
+  gamma_ir = -log(1-p_ir)
   eiEffectiveSampleSize = 10000
-  irEffectiveSampleSize = 10
+  irEffectiveSampleSize = 10000
   betaPriorPrecision = 0.1
   betaPriorMean = 0
   
@@ -57,13 +58,8 @@ proposeParameters = function(seedVal, chainNumber, processedData)
   
   set.seed(seedVal) 
   
-  gamma_ei=gamma_ei
-  gamma_ir=gamma_ir
-  
-  p_ei = 1-exp(-gamma_ei + rnorm(1,0,0.5))
-  p_ir = 1-exp(-gamma_ei + rnorm(1,0,0.5)) 
-  
-  beta = rnorm(4,0,1)
+
+  beta = rnorm(1,0,1)
   
   outFileName = paste("./chain_output_sim_", chainNumber ,".txt", sep = "")
   
@@ -87,8 +83,8 @@ proposeParameters = function(seedVal, chainNumber, processedData)
                                                        0.01)) # phi)
   
   InitContainer = buildInitialValueContainer(processedData$I_star, processedData$N, 
-                                             S0 = processedData$N[1,]-processedData$I_star[1,] - 2*processedData$I0,
-                                             E0 = processedData$I0,
+                                             S0 = processedData$N[1,]-processedData$I_star[1,] -processedData$I_star[2,],
+                                             E0 = processedData$I_star[2,],
                                              I0 = processedData$I0)
   DistanceModel = buildDistanceModel(dmList, priorAlpha = 1, priorBeta = 500)
   TransitionPriors = buildTransitionPriorsFromProbabilities(1-exp(-gamma_ei), 1-exp(-gamma_ir),

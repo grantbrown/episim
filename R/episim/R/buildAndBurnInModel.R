@@ -35,7 +35,7 @@ buildAndBurnInModel = function(params)
   # tuning parameters. 
   runSimulation = function(modelObject,
                            numBatches=500, 
-                           batchSize=20, 
+                           batchSize=10, 
                            targetAcceptanceRatio=0.2,
                            tolerance=0.05,
                            proportionChange = 0.1
@@ -52,7 +52,7 @@ buildAndBurnInModel = function(params)
   
   # Burn in tuning parameters
   runSimulation(SEIRmodel, numBatches = 1000)
-  runSimulation(SEIRmodel, batchSize = 100, numBatches = 100)  
+  runSimulation(SEIRmodel, batchSize = 100, numBatches = 500)  
   SEIRmodel$compartmentSamplingMode = 17
   SEIRmodel$performHybridStep = 50
 }

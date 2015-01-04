@@ -343,32 +343,41 @@ epidemicCanvas = function(nameVal)
 
   self.getRExportCode = function(){
     outData = "epidemicData <- matrix(c(";
-    var loc; var i; var j;
+    var loc; var i; var j; var k;
     var cty;
-    for (loc = 0; loc < self.cityList.length - 1; loc++){
-      cty = self.cityList[loc].getInfectionSummaryData();
-      for (i = 0; i < (cty.length); i++){
-        for (j = 0; j < (cty[i]).length; j++){
-          outData += cty[i][j] + ",";
+    var nonZeroList = [];
+    for (i = 0; i < self.cityList.length; i++){
+      cty = self.cityList[i].getInfectionSummaryData();
+      if (cty.length > 0){
+        nonZeroList.push([i, cty]);
+      }
+    }
+
+    if (nonZeroList.length == 0){
+      console.log("Something broke: zero infections encountered in a function which shouldn't be reached for this case.");
+    }
+
+    for (i = 0; i < nonZeroList.length; i++){
+      cty = nonZeroList[i][1];
+      for (j = 0; j < cty.length; j++){
+        for (k = 0; k < cty[j].length; k++){
+          if (i == 0 && j == 0 && k == 0){
+            outData += cty[j][k];
+          }
+          else{
+            outData += "," + cty[j][k];
+          }
         }
-        outData += ("\"L" + loc + "\",");
+        outData += (",\"L" + i + "\"");
       }
     }
-    loc = self.cityList.length - 1;
-    cty = self.cityList[loc].getInfectionSummaryData();
-    for (i = 0; i < (cty.length - 1); i++){
-      for (j = 0; j < (cty[i]).length; j++){
-        outData += cty[i][j] + ",";
-      }
-      outData += ("\"L" + loc + "\",");
-    }
-    i = cty.length - 1;
-    for (j = 0; j < (cty[i]).length; j++){
-      outData += cty[i][j] + ",";
-    }
-    outData += ("\"L" + loc + "\"), ncol = 3, byrow=TRUE);epidemicData=data.frame(time=as.numeric(epidemicData[,1]),"+
+
+
+
+    outData += "), ncol = 3, byrow=TRUE);epidemicData=data.frame(time=as.numeric(epidemicData[,1]),"+
                                                                                   "cases=as.numeric(epidemicData[,2]),"+
-                                                                                  "location=as.factor(epidemicData[,3]));");
+                                                                                  "location=as.factor(epidemicData[,3]));";
+    outData += "p_ei=" + p_ei + "; p_ir="+p_ir;
     return(outData);
   }
 
