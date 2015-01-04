@@ -1,6 +1,6 @@
 
 
-var nodeRadius = 10;
+var nodeRadius = 7;
 var agentSpeed = 10;
 var agentChangeDirFrac = 0.1;
 var canvasIsActive = false;
@@ -287,9 +287,9 @@ epidemicCanvas = function(nameVal)
   self.resize = function(){
     console.log("resizing");
     if (self.canvas != null){
-      var height = $(document).height() - 400;
+      var height = $(document).height() - 200;
       var parent = $("#epidemicCanvas").parent();
-      self.canvas.width = parent.width();
+      self.canvas.width = parent.width() - 100;
       self.canvas.height = height;
 
       // Update city coordinates;
@@ -299,8 +299,8 @@ epidemicCanvas = function(nameVal)
       self.cityList[1].y = self.canvas.height - self.canvas.height/4;
       self.cityList[2].x = self.canvas.width - self.canvas.width/3;
       self.cityList[2].y = self.canvas.height/4;
-      self.cityList[3].x = self.canvas.width/6;
-      self.cityList[3].y = self.canvas.height - self.canvas.height/8;
+      self.cityList[3].x = self.canvas.width/4;
+      self.cityList[3].y = self.canvas.height - self.canvas.height/6;
 
 
       for (var k = 0; k < self.cityList.length; k++){self.cityList[k].teleport();}
@@ -456,7 +456,7 @@ epidemicCanvas = function(nameVal)
       self.cityList = [new city(self.canvas.width/4, self.canvas.height/4,50, self.context, self),
                        new city(self.canvas.width - self.canvas.width/4, self.canvas.height - self.canvas.height/4, 55, self.context, self),
                        new city(self.canvas.width - self.canvas.width/3, self.canvas.height/4 , 23, self.context, self),
-                       new city(self.canvas.width/6, self.canvas.height - self.canvas.height/8 , 10, self.context, self)]
+                       new city(self.canvas.width/4, self.canvas.height - self.canvas.height/6 , 10, self.context, self)]
       // Keep a global reference.
       for (var l = 0; l < self.cityList.length; l++){
         for (var g =0; g< self.cityList[l].agents.length; g++){

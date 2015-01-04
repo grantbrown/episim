@@ -62,15 +62,14 @@
           </div>
       </div>
         <div class="cover-container">
-          <div class="navbar navbar-fixed-top masthead clearfix">
+          <div>
             <div class="inner">
               <div class = "row">
-                <div class = "col-sm-2">
+                <div class = "col-sm-4">
                   <h3 class="masthead-brand">Compartmental Epidemic Models</h3>
                 </div>
-                <div class="col-sm-3">
-                </div>
-                <div class = "col-sm-6">
+                <div class="col-sm-8">
+
                 </div>
               </div>
             </div>
@@ -84,38 +83,41 @@
           <div id="main-content">
             <div id="contentholder">
               <div class="row">
-                <div class = "col-sm-1"></div>
-                <div class="col-sm-10">
                   <div id="canvas-div">
                     <canvas id="epidemicCanvas" width="600px" height="300px" style="border:2px solid #000000;"></canvas>
                   </div>
-                  <div class="row canvas-control-div">
-                    <div class="col-sm-4">
-                      <a href="javascript:void(0)" id="epidemic-startbutton" class="btn btn-sm btn-default">Play</a>
-                      <a href="javascript:void(0)" id="epidemic-resetbutton" class="btn btn-sm btn-default">Reset</a>
-                      <a href="javascript:void(0)" id="epidemic-plotbutton" class="btn btn-sm btn-default">Summary Plot</a>
+                  <div class="canvas-control-div">
+                    <div class="row ">
+                      <div class="col-sm-4"></div>
+                      <div class="col-sm-4">
+                        <a href="javascript:void(0)" id="epidemic-startbutton" class="btn btn-sm btn-default">Play</a>
+                        <a href="javascript:void(0)" id="epidemic-resetbutton" class="btn btn-sm btn-default">Reset</a>
+                        <a href="javascript:void(0)" id="epidemic-plotbutton" class="btn btn-sm btn-default">Summary Plot</a>
+                      </div>
+                      <div class="col-sm-4"></div>
                     </div>
-                    <div class="col-sm-4">
-                      <div class="row">
-                        <p>Infectivity:</p>
-                        <div id="infectivity-slider"></div>
+                    <div class="row">
+                      <div class="col-sm-1"></div>
+                      <div class="col-sm-3">
+                          <p>Infectivity:</p>
+                          <div id="infectivity-slider"></div>
                       </div>
-                      <div class="row">
-                        <p>Infectious Duration:</p>
-                        <div id="infectious-time-slider"></div>
+                      <div class="col-sm-4">
+                          <p>Infectious Duration:</p>
+                          <div id="infectious-time-slider"></div>
                       </div>
-                      <div class="row">
-                        <p>Travel Propensity:</p>
-                        <div id="travel-slider"></div>
+                      <div class="col-sm-3">
+                          <p>Travel Propensity:</p>
+                          <div id="travel-slider"></div>
                       </div>
+                      <div class="col-sm-1"></div>
                     </div>
                   </div>
                 </div>
-                <div class="col-sm-1"></div>
               </div>
             </div>
           </div>
-          </div>
+        </div>
         </div>
       </div>
       <div class="row">
