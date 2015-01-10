@@ -4,8 +4,8 @@ buildAndBurnInModel = function(params)
   # save proposal and params to node workspace
   proposal <<- proposeParameters(params[["seedVal"]], params[["chainNumber"]],params[["processedData"]])
   params <<- params
-  extraR0Iterations <<- 500
-  extraR0BatchSize <<- 1000
+  extraR0Iterations <<- 100
+  extraR0BatchSize <<- 500
   processedData <<- params[["processedData"]]
   
   SEIRmodel =  buildSEIRModel(proposal$outFileName,
