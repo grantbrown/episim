@@ -50,7 +50,7 @@ proposeParameters = function(seedVal, chainNumber, processedData)
   gamma_ir = -log(1-p_ir)
   eiEffectiveSampleSize = 10000
   irEffectiveSampleSize = 10000
-  betaPriorPrecision = 0.1
+  betaPriorPrecision = 1
   betaPriorMean = 0
   
   # Params
