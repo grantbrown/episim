@@ -1,7 +1,8 @@
 
 
 var nodeRadius = 7;
-var agentSpeed = 10;
+var agentSpeed = 5;
+var waitMillis = 1;
 var agentChangeDirFrac = 0.1;
 var canvasIsActive = false;
 var p_ei = 0.08;
@@ -21,6 +22,13 @@ function absDist(a,b){
   return(Math.max(Math.abs(a.x - b.x), Math.abs(a.y - b.y)));
 }
 
+function sleep(milliseconds) {
+  const date = Date.now();
+  let currentDate = null;
+  do {
+    currentDate = Date.now();
+  } while (currentDate - date < milliseconds);
+}
 
 function agent(agentx, agenty, agentdx, agentdy, status, radius, context, city){
   var self = this;
@@ -322,6 +330,7 @@ epidemicCanvas = function(nameVal)
 
 
   self.moveAndPlotAgents = function(){
+	//sleep(waitMillis);
     self.timeElapsed += 1;
     if (self.canvas != null){
       for (var j = 0; j < self.agents.length; j++)
@@ -558,6 +567,7 @@ epidemicCanvas = function(nameVal)
     }
 
     requestAnimFrame(function(){
+		
       self.animate();
     });
   }
@@ -599,6 +609,7 @@ epidemicCanvas = function(nameVal)
     var infectivitySlider = $("#infectivity-slider");
     var infectiousTimeSlider = $("#infectious-time-slider");
     var travelSlider = $("#travel-slider");
+	var speedSlider = $("#speed-slider");
 
     if (playPauseButton != null){
       playPauseButton.unbind();
@@ -613,9 +624,9 @@ epidemicCanvas = function(nameVal)
      $(function() {
         infectivitySlider.slider({
           range: "min",
-          value:50,
+          value:20,
           min: 0,
-          max: 100,
+          max: 50,
           slide: function( event, ui ) {
             infectProb = ui.value/100;
           }
@@ -636,6 +647,18 @@ epidemicCanvas = function(nameVal)
      });
 
     $(function() {
+       speedSlider.slider({
+         range: "min",
+         value:5,
+         min: 3,
+         max: 10,
+         slide: function( event, ui ) {
+		   agentSpeed = ui.value;
+         }
+       });
+     });
+	 
+	 $(function() {
        travelSlider.slider({
          range: "min",
          value:25,
@@ -647,6 +670,7 @@ epidemicCanvas = function(nameVal)
          }
        });
      });
+
 
 
       playPauseButton.click(function(){
