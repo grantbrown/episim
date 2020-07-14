@@ -731,4 +731,5 @@ var activateCanvas = function(){
   epidemicCanvasInstance.wireUpControls();
   epidemicCanvasInstance.moveAndPlotAgents();
   epidemicCanvasInstance.animate();
+  google.load("visualization", "1", {packages:["corechart"]});
 }
