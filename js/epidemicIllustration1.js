@@ -109,7 +109,7 @@ function agent(agentx, agenty, agentdx, agentdy, status, radius, context, city){
   self.move = function(){
     self.x += self.dx*self.speedMultiplier;
     self.y += self.dy*self.speedMultiplier;
-    if ((Math.random() < agentChangeDirFrac))
+    if ((Math.random() < agentChangeDirFrac/(10-agentSpeed)))
     {
         self.setNewDestination(self.getCityDist() <= self.city.cityRadiusSq);
     }
@@ -650,10 +650,10 @@ epidemicCanvas = function(nameVal)
        speedSlider.slider({
          range: "min",
          value:5,
-         min: 3,
-         max: 10,
+         min: 1,
+         max: 100,
          slide: function( event, ui ) {
-		   agentSpeed = ui.value;
+		   agentSpeed = ui.value/20;
          }
        });
      });
@@ -731,4 +731,5 @@ var activateCanvas = function(){
   epidemicCanvasInstance.wireUpControls();
   epidemicCanvasInstance.moveAndPlotAgents();
   epidemicCanvasInstance.animate();
+  google.load("visualization", "1", {packages:["corechart"]});
 }
